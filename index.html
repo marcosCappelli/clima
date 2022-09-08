@@ -33,27 +33,34 @@
                 </button>
             </div>
         </div>
-        <div id="weather-data">
+        <div id="weather-data" class="hide">
             <h2>
                 <i class="fa-solid fa-location-dot"></i>
-                <span id="city">Fortaleza</span>
-                <img src="https://countryflagsapi.com/png/br" alt="Bandeira do pais" id="country">
+                <span id="city"></span>
+                <img src=""
+                 alt="Bandeira do pais"
+                  id="country">
             </h2>
-            <p id="temperature"><span>35</span>&deg; C</p>
+            <p id="temperature"><span></span>&deg; C</p>
             <div id="description-container">
                 <p id="description">Ensolarado</p>
-                <img src="http://openweathermap.org/img/wn/01d.png" alt="Condições do tempo" id="weather-icon">
+                <img src=""
+                 alt="Condições do tempo"
+                  id="weather-icon">
             </div>
             <div id="details-container">
-                <p id="umidity">
+                <p id="humidity">
                     <i class="fa-solid fa-droplet"></i>
-                    <span>46%</span>
+                    <span></span>
                 </p>
                 <p id="wind">
                     <i class="fa-solid fa-wind"></i>
-                    <span>5 km/h</span>
+                    <span></span>
                 </p>
             </div>
+        </div>
+        <div id="error-message" class="hide">
+            <p>Cidade não localizada, verifique o nome.</p>
         </div>
     </div>
 </body>

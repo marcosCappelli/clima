@@ -11,10 +11,12 @@ const tempElement = document.querySelector("#temperature span");
 const descElement = document.querySelector("#description");
 const weatherIconElement = document.querySelector("#weather-icon");
 const countryElement = document.querySelector("#country");
-const umidityElement = document.querySelector("#umidity span");
-const windElement = document.querySelector("#windy span");
+const humidityElement = document.querySelector("#humidity span");
+const windElement = document.querySelector("#wind span");
 
+const weatherContainer = document.querySelector("#weather-data");
 
+const errorMessageContainer = document.querySelector("#error-message");
 //Funções
 const getWeatherData = async(city) => {
 
@@ -23,13 +25,41 @@ const getWeatherData = async(city) => {
     const res = await fetch(apiWeatherURL)
     const data = await res.json()
 
-    console.log(data);
+    return data;
+};
 
+const showErrorMessage = () => {
+    errorMessageContainer.classList.remove("hide");
+};
+
+const hideInformation = () => {
+    errorMessageContainer.classList.add("hide");
+    weatherContainer.classList.add("hide");
 }
 
-const showWeatherData = (city) => {
-    getWeatherData(city);
-}
+const showWeatherData = async(city) => {
+    hideInformation();
+
+    const data = await getWeatherData(city);
+
+    if (data.cod === "404") {
+        showErrorMessage();
+        return;
+    };
+
+    cityElement.innerText = data.name;
+    tempElement.innerText = parseInt(data.main.temp);
+    descElement.innerText = data.weather[0].description;
+    weatherIconElement.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
+    );
+    countryElement.setAttribute("src", apiCountryUrl + data.sys.country);
+    humidityElement.innerText = `${data.main.humidity}%`;
+    windElement.innerText = `${data.wind.speed}Km/h`;
+
+    weatherContainer.classList.remove("hide");
+};
 
 //Eventos
 searchBtn.addEventListener("click", (e) => {
@@ -42,3 +72,10 @@ searchBtn.addEventListener("click", (e) => {
     showWeatherData(city);
 });
 
+cityInput.addEventListener("keyup", (e) => {
+    if (e.code === "Enter") {
+        const city = e.target.value;
+
+        showWeatherData(city);
+    }
+});
