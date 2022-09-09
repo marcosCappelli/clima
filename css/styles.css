@@ -14,7 +14,7 @@ body {
 }   
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .container {
@@ -23,6 +23,7 @@ body {
     padding: 2rem;
     color: aliceblue;
     border-radius: 1rem;
+    max-width: 400px;
 }
 
 /* form */
@@ -54,7 +55,8 @@ body {
 
 /* Clima */
 #weather-data,
-#error-message {
+#error-message,
+#suggestions {
     border-top: 1px solid #fff;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
@@ -104,6 +106,30 @@ body {
     padding: 0.6rem;
 }
 
+/* Sugestões */
+#suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#suggestions button {
+    min-width: 150px;
+    margin: 0.8rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 10rem;
+    border: none;
+    background-color: #8dd0f5;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#suggestions button:hover {
+    opacity: 0.7;
+}
 
 
 
